@@ -25,6 +25,8 @@ const sucesso = (posicao) => { //callback de sucesso para captura da posicao
 
 const sucessoIr = (posicao) => {
     posicaoInicial = posicao;
+    posicaoInicial.coords.latitude = document.getElementById('latInput').value
+    posicaoInicial.coords.longitude = document.getElementById('longInput').value
     latitude.innerHTML = posicaoInicial.coords.latitude;
     longitude.innerHTML = posicaoInicial.coords.longitude;
     mapa.src = "https://maps.google.com/maps?q="+ posicaoInicial.coords.latitude + "," + posicaoInicial.coords.longitude + "&z=13&ie=UTF8&iwloc=&output=embed"
@@ -54,7 +56,5 @@ capturarLocalizacao.addEventListener('click', () =>{
 })
 
 irLocalizao.addEventListener('click', () =>{
-    posicaoInicial.coords.latitude = document.getElementById('latInput').value
-    posicaoInicial.coords.longitude = document.getElementById('longInput').value
   navigator.geolocation.getCurrentPosition(sucessoIr, erro)
 })
