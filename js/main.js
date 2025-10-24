@@ -23,6 +23,13 @@ const sucesso = (posicao) => { //callback de sucesso para captura da posicao
     mapa.src = "https://maps.google.com/maps?q="+ posicaoInicial.coords.latitude + "," + posicaoInicial.coords.longitude + "&z=13&ie=UTF8&iwloc=&output=embed"
 }
 
+const sucessoIr = (posicao) => {
+    posicaoInicial = posicao;
+    latitude.innerHTML = posicaoInicial.coords.latitude;
+    longitude.innerHTML = posicaoInicial.coords.longitude;
+    mapa.src = "https://maps.google.com/maps?q="+ posicaoInicial.coords.latitude + "," + posicaoInicial.coords.longitude + "&z=13&ie=UTF8&iwloc=&output=embed"
+}
+
 const erro = (error) => { //callback de error (falha para captura de localizacao)
     let errorMessage;
     switch(error.code){
@@ -44,4 +51,10 @@ const erro = (error) => { //callback de error (falha para captura de localizacao
 
 capturarLocalizacao.addEventListener('click', () =>{
   navigator.geolocation.getCurrentPosition(sucesso, erro)
+})
+
+irLocalizao.addEventListener('click', () =>{
+    posicaoInicial.coords.latitude = document.getElementById('latInput').value
+    posicaoInicial.coords.longitude = document.getElementById('longInput').value
+  navigator.geolocation.getCurrentPosition(sucessoIr, erro)
 })
